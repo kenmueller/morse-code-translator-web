@@ -1,28 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
-	function translateMorse(morse) {
+	const findMorse = element => type =>
+		morse.find(object => object[type] === element)[type ? 0 : 1]
 
-	}
+	const morseChanged = () =>
+		// TODO: Finish this function
+		alert('do this')
 
-	function translateText(text) {
-		
-	}
-
-	function morseChanged() {
-		document.querySelectorAll('.input.translate.morse').forEach(element =>
-			document.querySelectorAll('.input.translate.text').forEach(textInput =>
-				textInput.value = translateMorse(element.value)
-			)
-		)
-	}
-
-	function textChanged() {
+	const textChanged = () =>
 		document.querySelectorAll('.input.translate.text').forEach(element =>
 			document.querySelectorAll('.input.translate.morse').forEach(morseInput =>
-				morseInput.value = translateText(element.value)
+				morseInput.value = element.value.split('').reduce((acc, character) => acc.concat(findMorse(character)(0)), '')
 			)
 		)
-	}
 
 	document.querySelectorAll('.input.translate.morse').forEach(element => element.addEventListener('input', morseChanged))
 	document.querySelectorAll('.input.translate.text').forEach(element => element.addEventListener('input', textChanged))
 })
+
+const morse = [
+	[' ', '/'],
+	['0', '-----'],
+	['1', '.----'],
+	['2', '..---'],
+	['3', '...--'],
+	['4', '....-'],
+	['5', '.....'],
+	['6', '-....'],
+	['7', '--...'],
+	['8', '---..'],
+	['9', '----.'],
+	['a', '.-'],
+	['b', '-...'],
+	['c', '-.-.'],
+	['d', '-..'],
+	['e', '.'],
+	['f', '..-.'],
+	['g', '--.'],
+	['h', '....'],
+	['i', '..'],
+	['j', '.---'],
+	['k', '-.-'],
+	['l', '.-..'],
+	['m', '--'],
+	['n', '-.'],
+	['o', '---'],
+	['p', '.--.'],
+	['q', '--.-'],
+	['r', '.-.'],
+	['s', '...'],
+	['t', '-'],
+	['u', '..-'],
+	['v', '...-'],
+	['w', '.--'],
+	['x', '-..-'],
+	['y', '-.--'],
+	['z', '--..'],
+	['.', '.-.-.-'],
+	[',', '--..--'],
+	['?', '..--..'],
+	['!', '-.-.--'],
+	['-', '-....-'],
+	['/', '-..-.'],
+	['@', '.--.-.'],
+	['(', '-.--.'],
+	[')', '-.--.-']
+]
