@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		alert('do this')
 
 	const textChanged = () =>
-		document.querySelectorAll('.input.translate.text').forEach(element =>
-			document.querySelectorAll('.input.translate.morse').forEach(morseInput =>
-				morseInput.value = element.value.split('').reduce((acc, character) => acc.concat(findMorse(character)(0)), '')
+		document.querySelectorAll('.textarea.translate.text').forEach(element =>
+			document.querySelectorAll('.textarea.translate.morse').forEach(morseTextArea =>
+				morseTextArea.value = element.value.split('').reduce((acc, character) => acc.concat(findMorse(character)(0)), '')
 			)
 		)
 
-	document.querySelectorAll('.input.translate.morse').forEach(element => element.addEventListener('input', morseChanged))
-	document.querySelectorAll('.input.translate.text').forEach(element => element.addEventListener('input', textChanged))
+	document.querySelectorAll('.textarea.translate.morse').forEach(element => element.addEventListener('input', morseChanged))
+	document.querySelectorAll('.textarea.translate.text').forEach(element => element.addEventListener('input', textChanged))
 })
 
 const morse = [

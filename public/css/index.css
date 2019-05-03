@@ -16,3 +16,6 @@ nav.navbar {
 .navbar-item.logo {
 	margin-left: 12px;
 }
+.textarea.translate {
+	height: 300px;
+}
