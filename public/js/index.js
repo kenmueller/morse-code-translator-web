@@ -1,21 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const findMorse = element => type =>
-		morse.find(object => object[type] === element)[type ? 0 : 1]
-	
+	const findMorse = element => type => {
+		const translated = morse.find(object => object[type] === element)
+		return translated ? translated[type ? 0 : 1] : ''
+	}
+
 	const translateMorse = characters => type =>
-		characters.reduce((acc, character) => acc.concat(findMorse(character)(type)), '')
+		characters.reduce((acc, character) => acc.concat(findMorse(character)(type)), [])
 
 	const morseChanged = () =>
 		document.querySelectorAll('.textarea.translate.morse').forEach(element =>
 			document.querySelectorAll('.textarea.translate.text').forEach(textTextArea =>
-				textTextArea.value = translateMorse(element.value.trim().split(/\s+/g))(1)
+				textTextArea.value = translateMorse(element.value.trim().split(/\s+/g))(1).join('')
 			)
 		)
 
 	const textChanged = () =>
 		document.querySelectorAll('.textarea.translate.text').forEach(element =>
 			document.querySelectorAll('.textarea.translate.morse').forEach(morseTextArea =>
-				morseTextArea.value = translateMorse(element.value.trim().split(''))(0).split('').join(' ')
+				morseTextArea.value = translateMorse(element.value.trim().split(''))(0).join(' ')
 			)
 		)
 
